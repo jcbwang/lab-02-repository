@@ -27,10 +27,10 @@ Horn.readJson = () => {
   $.get('/data/page-1.json', 'json')
     .then(data => {
       data.forEach(item => {
-      Horn.allHorns.push(new Horn(item));
+        Horn.allHorns.push(new Horn(item));
+      })
     })
-  })
-.then(Horn.loadHorns)
+    .then(Horn.loadHorns)
 }
 
 Horn.loadHorns = () => {
@@ -38,3 +38,10 @@ Horn.loadHorns = () => {
 }
 
 $(() => Horn.readJson());
+
+$('select[name="animal"]').on('change', function(){
+  let $selection = $(this).val();
+  $('img').hide()
+  $(`img[data-horn = "${$selection}"]`).show()
+}) 
+
