@@ -20,9 +20,11 @@ Horn.prototype.render = function(){
   hornClone.html(hornHtml)
 
   hornClone.find('h2').text(this.title);
-  hornClone.find('img').attr('src', this.image_url);
+  hornClone.find('img').attr({src: 'this.image_url', data-horn);
+  hornClone.
   hornClone.find('p').text(this.description);
   hornClone.removeClass('clone');
+  hornClone.attr('data-horn', this.title);
   hornClone.attr('class', this.title);
   hornClone.removeAttr('class');
 
@@ -63,6 +65,7 @@ $('select[title="animal"]').on('change', function(){
   $('p').hide()
   $(`img[data-horn = "${$selection}"]`).show()
 })
+
 
 
 /*$(document).ready(function () {
