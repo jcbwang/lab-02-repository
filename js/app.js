@@ -49,11 +49,36 @@ Horn.readJson = () => {
         Horn.allHorns.push(new Horn(item));
       })
     })
-    .then(Horn.loadHorns)
+
+  })
+.then(Horn.loadHorns)
+//.then(Horn.fillArray)
+
+
 }
 
 Horn.loadHorns = () => {
   Horn.allHorns.forEach(horn => horn.render())
+}
+
+// const keywords = ['narwhal', 'rhino', 'unicorn', 'unilego', 'triceratops', 'markhor', 'mouflon', 'addax', 'chameleon', 'lizard', 'dragon'];
+
+// keywords.forEach(keyword => {
+//   $('select').append($('<option></option>').val(keyword).text(keyword));
+// })
+
+
+Horn.fillArray = () =>{
+  const filtered_array = [];
+
+  Horn.allHorns.forEach(image => {
+    if(!filtered_array.includes(image.keyword)) filtered_array.push(image.keyword);
+  })
+  filtered_array.sort();
+  filtered_array.forEach(keyword => {
+    let optionTag = `<option value="${keyword}">${keyword}</option>`
+    $('select').append(optionTag);
+  })
 }
 
 $(() => Horn.readJson());
