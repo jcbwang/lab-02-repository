@@ -20,14 +20,10 @@ Horn.prototype.render = function(){
   hornClone.html(hornHtml)
 
   hornClone.find('h2').text(this.title);
-  hornClone.find('img').attr({src: 'this.image_url', data-horn);
-  hornClone.
+  hornClone.find('img').attr('src', this.image_url);
   hornClone.find('p').text(this.description);
+  hornClone.attr('class', this.keyword);
   hornClone.removeClass('clone');
-  hornClone.attr('data-horn', this.title);
-  hornClone.attr('class', this.title);
-  hornClone.removeAttr('class');
-
 }
 console.log(keywords);
 
@@ -56,19 +52,50 @@ Horn.loadHorns = () => {
   Horn.allHorns.forEach(horn => horn.render())
 }
 
-$(() => Horn.readJson());
 
 
-$('select[title="animal"]').on('change', function(){
+
+/*$('select[title="animal"]').on('change', function(){
   let $selection = $(this).val();
   $('img').hide()
   $('p').hide()
   $(`img[data-horn = "${$selection}"]`).show()
-})
+})*/
 
+Horn.populateFilter = () => {
+  let filterKeywords = [];
 
+  $('option').not('first').remove();
 
+  Horn.allforEach(horn => {
+    if (!filterKeywords.includes(horn.keyword)) filterKeywords.push(horn.keyword);
+  })
+
+  filterKeywords.sort();
+
+  filterKeywords.forEach(keyword => {
+    let optionTag = `<option value"${keyword}">${keyword}</option>`;
+    $('select').append(optionTag);
+  })
+}
+
+Horn.handleFilter = () => {
+  $('select').on('change', function() {
+    let selected = $(this).val();
+    if (selected !== 'Filter By Keyword') {
+      $('div').hide();
+
+      Horn.allHorns.forEach(horn => {
+        if (selected === horn.keyword) {
+          $(`div[class="${selected}]"`).addClass('filtered');
+        }
+      })
+      $(`option[value=${selected}]`);
+    }
+  })
+}
+ 
 /*$(document).ready(function () {
   $('.tab-content').hide()
 })*/
-
+$(() => Horn.readJson());
