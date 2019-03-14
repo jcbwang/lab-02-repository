@@ -1,15 +1,12 @@
 'use strict';
 
 function Horn(horn) {
-  this.title = horn.title;
+
   this.image_url = horn.image_url;
   this.description = horn.description;
-  this.keyword = horn.keyword;
 }
 
 Horn.allHorns = [];
-const keywords = ['narwhal', 'rhino', 'unicorn', 'unilego', 'triceratops', 'markhor', 'mouflon', 'addax', 'chameleon', 'lizard', 'dragon'];
-
 
 Horn.prototype.render = function(){
   $('main').append('<div class="clone"></div>');
@@ -19,81 +16,51 @@ Horn.prototype.render = function(){
 
   hornClone.html(hornHtml)
 
-  hornClone.find('h2').text(this.title);
-  hornClone.find('img').attr({src: 'this.image_url', data-horn);
-  hornClone.
+  hornClone.find('h2').text(this.name);
+  hornClone.find('img').attr('src', this.image_url);
   hornClone.find('p').text(this.description);
   hornClone.removeClass('clone');
-  hornClone.attr('data-horn', this.title);
-  hornClone.attr('class', this.title);
-  hornClone.removeAttr('class');
-
+  hornClone.attr('class', this.name);
 }
-console.log(keywords);
-
-
-keywords.forEach(keyword => {
-  $('#dropdown').append($('<option></option>').val(keyword).text(keyword));
-})
-
-
-/*var $dropdown = $('#dropdown');
-$.each(result, function(){
-  $dropdown.append($('<option />').val(.keywords)
-})*/
 
 Horn.readJson = () => {
   $.get('/data/page-1.json', 'json')
     .then(data => {
       data.forEach(item => {
-        Horn.allHorns.push(new Horn(item));
-      })
+      Horn.allHorns.push(new Horn(item));
     })
-
   })
 .then(Horn.loadHorns)
-//.then(Horn.fillArray)
-
-
+.then(Horn.fillArray)
 }
 
 Horn.loadHorns = () => {
   Horn.allHorns.forEach(horn => horn.render())
 }
 
-// const keywords = ['narwhal', 'rhino', 'unicorn', 'unilego', 'triceratops', 'markhor', 'mouflon', 'addax', 'chameleon', 'lizard', 'dragon'];
+const keywords = ['narwhal', 'rhino', 'unicorn', 'unilego', 'triceratops', 'markhor', 'mouflon', 'addax', 'chameleon', 'lizard', 'dragon'];
 
-// keywords.forEach(keyword => {
-//   $('select').append($('<option></option>').val(keyword).text(keyword));
-// })
-
-
-Horn.fillArray = () =>{
-  const filtered_array = [];
-
-  Horn.allHorns.forEach(image => {
-    if(!filtered_array.includes(image.keyword)) filtered_array.push(image.keyword);
-  })
-  filtered_array.sort();
-  filtered_array.forEach(keyword => {
-    let optionTag = `<option value="${keyword}">${keyword}</option>`
-    $('select').append(optionTag);
-  })
-}
-
-$(() => Horn.readJson());
-
-
-$('select[title="animal"]').on('change', function(){
-  let $selection = $(this).val();
-  $('img').hide()
-  $('p').hide()
-  $(`img[data-horn = "${$selection}"]`).show()
+keywords.forEach(keyword => {
+  $('select').append($('<option></option>').val(keyword).text(keyword));
 })
 
 
 
-/*$(document).ready(function () {
-  $('.tab-content').hide()
-})*/
+
+//change
+
+// Horn.fillArray = () =>{
+//   const filtered_array = [];
+
+//   Horn.allHorns.forEach(image => {
+//     if(!filtered_array.includes(image.keyword)) filtered_array.push(image.keyword);
+//   })
+//   filtered_array.sort();
+//   filtered_array.forEach(keyword => {
+//     let optionTag = `<option value="${keyword}">${keyword}</option>`
+//     $('select').append(optionTag);
+//   })
+// }
+
+$(() => Horn.readJson());
 
