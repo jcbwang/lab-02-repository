@@ -21,18 +21,19 @@ Horn.prototype.render = function(){
   hornClone.find('img').attr('src', this.image_url);
   hornClone.find('p').text(this.description);
   hornClone.removeClass('clone');
-  hornClone.attr('class', this.name);
+  hornClone.attr('class', this.keyword);
 }
 
 Horn.readJson = () => {
   $.get('/data/page-1.json', 'json')
     .then(data => {
       data.forEach(item => {
-      Horn.allHorns.push(new Horn(item));
+        Horn.allHorns.push(new Horn(item));
+      })
     })
-  })
-.then(Horn.loadHorns)
-.then(Horn.fillArray)
+    .then(Horn.loadHorns)
+    .then(Horn.fillArray)
+    .then(Horn.filter)
 }
 
 Horn.loadHorns = () => {
@@ -49,6 +50,22 @@ Horn.fillArray = () =>{
   filtered_array.forEach(keyword => {
     let optionTag = `<option value="${keyword}">${keyword}</option>`
     $('select').append(optionTag);
+  })
+}
+
+Horn.filter = () => {
+  $('select').on('change', function(){
+    let selected = $(this).val();
+    if (selected !== 'Filter By Keyword') {
+      $('div').hide();
+
+      Horn.allHorns.forEach(image => {
+        if (selected === image.keyword) {
+          $(`div [class="${selected}"]`).addClass('filtered').fadeIn();
+        }
+      })
+      $(`div[class= "${selected}"]`).fadeIn();
+    }
   })
 }
 

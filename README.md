@@ -17,11 +17,11 @@ Number and name of feature: Feature 2: Filter images
 
 Estimate of time needed to complete:  30 minutes
 
-Start time: 
+Start time:  10:05am
 
-Finish time: 
+Finish time: 10:33am (next day)
 
-Actual time needed to complete: 
+Actual time needed to complete: 4 hours
 
 
 Number and name of feature: Feature 3: Style the application
