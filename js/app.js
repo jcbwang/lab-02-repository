@@ -61,7 +61,7 @@ Horn.filter = () => {
 
       Horn.allHorns.forEach(image => {
         if (selected === image.keyword) {
-          $(`div [class="${selected}"]`).addClass('filtered').fadeIn();
+          $(`div [class="${selected}"]`).fadeIn();
         }
       })
       $(`div[class= "${selected}"]`).fadeIn();
