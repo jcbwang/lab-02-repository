@@ -1,7 +1,7 @@
 'use strict';
 
 function Horn(horn) {
-  this.name = horn.name;
+
   this.image_url = horn.image_url;
   this.description = horn.description;
 }
@@ -38,24 +38,28 @@ Horn.loadHorns = () => {
   Horn.allHorns.forEach(horn => horn.render())
 }
 
-// const keywords = ['narwhal', 'rhino', 'unicorn', 'unilego', 'triceratops', 'markhor', 'mouflon', 'addax', 'chameleon', 'lizard', 'dragon'];
+const keywords = ['narwhal', 'rhino', 'unicorn', 'unilego', 'triceratops', 'markhor', 'mouflon', 'addax', 'chameleon', 'lizard', 'dragon'];
 
-// keywords.forEach(keyword => {
-//   $('select').append($('<option></option>').val(keyword).text(keyword));
-// })
+keywords.forEach(keyword => {
+  $('select').append($('<option></option>').val(keyword).text(keyword));
+})
 
 
-Horn.fillArray = () =>{
-  const filtered_array = [];
 
-  Horn.allHorns.forEach(image => {
-    if(!filtered_array.includes(image.keyword)) filtered_array.push(image.keyword);
-  })
-  filtered_array.sort();
-  filtered_array.forEach(keyword => {
-    let optionTag = `<option value="${keyword}">${keyword}</option>`
-    $('select').append(optionTag);
-  })
-}
+
+
+
+// Horn.fillArray = () =>{
+//   const filtered_array = [];
+
+//   Horn.allHorns.forEach(image => {
+//     if(!filtered_array.includes(image.keyword)) filtered_array.push(image.keyword);
+//   })
+//   filtered_array.sort();
+//   filtered_array.forEach(keyword => {
+//     let optionTag = `<option value="${keyword}">${keyword}</option>`
+//     $('select').append(optionTag);
+//   })
+// }
 
 $(() => Horn.readJson());
