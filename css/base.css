@@ -1,3 +1,17 @@
-img{
-  height:200px;
+*{
+  font-family:'Crimson Text', serif;
+  text-align: center;
 }
+
+img{
+  width:200px;
+}
+
+h1{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+

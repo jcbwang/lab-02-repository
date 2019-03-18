@@ -28,8 +28,8 @@ Number and name of feature: Feature 3: Style the application
 
 Estimate of time needed to complete:  1.5 hours
 
-Start time: 
+Start time: 7:45pm
 
-Finish time: 
+Finish time: 8:15pm
 
-Actual time needed to complete: 
+Actual time needed to complete: 30m minutes
